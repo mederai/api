@@ -1,0 +1,9 @@
+{
+  "title": "APP KEY",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    }
+  }
+}
