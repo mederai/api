@@ -2,8 +2,14 @@ openapi: 3.0.0
 info:
   title: try
   version: '1.0'
+  contact:
+    name: 'Support '
+    url: www.meder.ai
+    email: support@medera.ai
+  termsOfService: 'https://www.iubenda.com/privacy-policy/94019414'
+  license: {}
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'https://api.medera.ai/query'
 paths:
   '/users/{userId}':
     parameters:
@@ -143,6 +149,68 @@ paths:
                   dateOfBirth: '1996-08-24'
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
+  /engdiag:
+    post:
+      summary: 'POST diagnosis '
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    content:
+                      question:
+                        type: single
+                        text: Did your joint pain start suddenly?
+                        items:
+                          - id: symptom_ab0a
+                            name: 'Joint pain, sudden'
+                            choices:
+                              - id: present
+                                label: 'Yes'
+                              - id: absent
+                                label: 'No'
+                              - id: unknown
+                                label: Don't know
+                        extras: {}
+                      conditions:
+                        - id: condition_a0hc
+                          name: 'Joint pain, unspecified'
+                          common_name: Unspecific joint pain
+                          probability: 0.0514
+                      extras: {}
+      operationId: post-engdiag
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content-Type
+          description: application/json
+        - schema: {}
+          in: header
+          name: Authorization
+          description: Query 620b58fa8d14440aa4ba6dc2328a70af
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              example-1:
+                value:
+                  age: 25
+                  evidence:
+                    - choice_id: present
+                      id: s_44
+                  sex: female
 components:
   schemas:
     User:
@@ -186,3 +254,4 @@ components:
         - lastName
         - email
         - emailVerified
+  securitySchemes: {}
