@@ -7,7 +7,6 @@ info:
     url: www.meder.ai
     email: support@medera.ai
   termsOfService: 'https://www.iubenda.com/privacy-policy/94019414'
-  license: {}
 servers:
   - url: 'https://api.medera.ai/query'
 paths:
@@ -211,6 +210,7 @@ paths:
                     - choice_id: present
                       id: s_44
                   sex: female
+      x-internal: false
 components:
   schemas:
     User:
