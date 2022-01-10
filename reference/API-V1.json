@@ -1,0 +1,384 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API V1",
+    "version": "1.0",
+    "contact": {
+      "name": "Support Team",
+      "url": "https://medera.ai",
+      "email": "info@medera.ai"
+    },
+    "termsOfService": "https://www.iubenda.com/privacy-policy/94019414",
+    "summary": "Medera API Version 1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.medera.ai"
+    }
+  ],
+  "paths": {
+    "query/engdiag": {
+      "post": {
+        "summary": "Initial observation",
+        "operationId": "POST /Query/Engdiag",
+        "responses": {
+          "200": {
+            "description": "User Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "content": {
+                      "type": "object",
+                      "properties": {
+                        "question": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "text": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "items": {
+                              "type": "array",
+                              "uniqueItems": true,
+                              "minItems": 1,
+                              "items": {
+                                "required": [
+                                  "id",
+                                  "name"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "choices": {
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "minItems": 1,
+                                    "items": {
+                                      "required": [
+                                        "id",
+                                        "label"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        },
+                                        "label": {
+                                          "type": "string",
+                                          "minLength": 1
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "extras": {
+                              "type": "object",
+                              "properties": {},
+                              "required": []
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "text",
+                            "items",
+                            "extras"
+                          ]
+                        },
+                        "conditions": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "required": [
+                              "id",
+                              "name",
+                              "common_name",
+                              "probability"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "common_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "probability": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        },
+                        "extras": {
+                          "type": "object",
+                          "properties": {},
+                          "required": []
+                        }
+                      },
+                      "required": [
+                        "question",
+                        "conditions",
+                        "extras"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "content"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "success": true,
+                      "content": {
+                        "question": {
+                          "type": "single",
+                          "text": "Does the pain worsen when you touch or press around your ear?",
+                          "items": [
+                            {
+                              "id": "symptom_dgf",
+                              "name": "Pain increases when touching ear area",
+                              "choices": [
+                                {
+                                  "id": "present",
+                                  "label": "Yes"
+                                },
+                                {
+                                  "id": "absent",
+                                  "label": "No"
+                                },
+                                {
+                                  "id": "unknown",
+                                  "label": "Don't know"
+                                }
+                              ]
+                            }
+                          ],
+                          "extras": {}
+                        },
+                        "conditions": [
+                          {
+                            "id": "condition_hg",
+                            "name": "Common cold",
+                            "common_name": "Common cold",
+                            "probability": 0.0708
+                          }
+                        ],
+                        "extras": {}
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "New User Bob Fellow": {
+                    "value": {
+                      "id": 12,
+                      "firstName": "Bob",
+                      "lastName": "Fellow",
+                      "email": "bob.fellow@gmail.com",
+                      "dateOfBirth": "1996-08-24",
+                      "emailVerified": false,
+                      "createDate": "2020-11-18"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Required Information"
+          },
+          "409": {
+            "description": "Email Already Taken"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "age": {
+                    "type": "number"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "choice_id",
+                        "id"
+                      ],
+                      "properties": {
+                        "choice_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "id": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  },
+                  "sex": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "age",
+                  "evidence",
+                  "sex"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "age": 25,
+                    "evidence": [
+                      {
+                        "choice_id": "present",
+                        "id": "symptom_dg"
+                      }
+                    ],
+                    "sex": "female"
+                  }
+                }
+              },
+              "examples": {}
+            }
+          },
+          "description": "Post the necessary fields for the API to create a new user."
+        },
+        "description": "Query diagnosis API endpoint",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Authorization",
+            "description": "Query <<api key>>"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "language",
+            "description": "Language Initial For example: <<en>> for English langiageb "
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "title": "User",
+        "type": "object",
+        "description": "",
+        "examples": [
+          {
+            "id": 142,
+            "firstName": "Alice",
+            "lastName": "Smith",
+            "email": "alice.smith@gmail.com",
+            "dateOfBirth": "1997-10-31",
+            "emailVerified": true,
+            "signUpDate": "2019-08-24"
+          }
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the given user."
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "example": "1997-10-31"
+          },
+          "emailVerified": {
+            "type": "boolean",
+            "description": "Set to true if the user's email has been verified."
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date",
+            "description": "The date that the user was created."
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email",
+          "emailVerified"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "Authorization": {
+        "name": "Query <<api key>>",
+        "type": "apiKey",
+        "in": "header"
+      },
+      "Content-Type": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "application/json"
+      }
+    }
+  },
+  "security": [
+    {
+      "API Key - 1": []
+    },
+    {
+      "Content-Type": []
+    }
+  ]
+}
