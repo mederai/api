@@ -297,7 +297,7 @@
             },
             "in": "query",
             "name": "language",
-            "description": "Language Initial For example: <<en>> for English langiageb "
+            "description": "Language Initial For example:  \"en\"  for English language "
           }
         ]
       },
