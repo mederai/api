@@ -4,7 +4,8 @@ The first step to utilize the diagnostic engine is to feed three required observ
 
 
 ### MMDE techniques and workflow 
-![Artboard 4.png](https://medera.stoplight.io/api/v1/projects/cHJqOjMyMzQx/images/iIdYmQoMWFc)
+![1.png](https://medera.stoplight.io/api/v1/projects/cHJqOjMyMzQx/images/QxzJTIl3loQ)
+
 
 
 

@@ -8,7 +8,7 @@ We are working hard with our partners to enrich the medical knowledge base with 
 
 
 Medera provides solutions to telehealth and healthcare providers including medical diagnosis and queue system engines. Currently, we offer multi-languages medical diagnosis API endpoints in a beta form which can help us and the healthcare community to build a new digital health ecosystem.
-Below you'll find our API documentation and a few interactive components that allow you to interact directly with our data endpoints (no code required). Please direct any questions or requests to info@meder.ai 
+Below you'll find our API documentation and a few interactive components that allow you to interact directly with our data endpoints (no code required). 
 
 
 
@@ -18,7 +18,7 @@ Below you'll find our API documentation and a few interactive components that al
 
 You can use your API Key available from https://api.medera.ai, to obtain an expiring token that can be used to authenticate your user with the API.
 
->  We provide a limited call for the demo.
+>  Please direct any questions or requests to info@medera.ai 
 
 
 ## Privacy and Security
