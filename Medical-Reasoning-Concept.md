@@ -2,17 +2,16 @@
 
 The first step to utilize the diagnostic engine is to feed three required observation factors: gender, age, and one or multiple symptoms to our API endpoint `/engdiag`. 
 
+> The initial screening values `{age, sex, evidence}` will be stored in until the 
+
 
 ### MMDE techniques and workflow 
 ![1.png](https://medera.stoplight.io/api/v1/projects/cHJqOjMyMzQx/images/QxzJTIl3loQ)
 
 
 
-
-## Concept of Classification
-The first step to utilize the diagnostic engine is to feed three required observation factors: Gender, Age, and one or multiple Symptoms to our API endpoint `/engdiag`. For example:
-
-
+### Example
+A 27 years old female has an ear pain, and it became worse when it pressed around the ear.
 
 <!-- 
 type: tab
@@ -21,14 +20,14 @@ title: Request
 
 ```json
 {
-  "age": 0,
+  "age": 27,
   "evidence": [
     {
-      "choice_id": "string",
-      "id": "string"
+      "choice_id": "present",
+      "id": "symptom_dg"
     }
   ],
-  "sex": "string"
+  "sex": "female"
 }
 ```
 
@@ -42,11 +41,11 @@ title: Response
     "content": {
         "question": {
             "type": "single",
-            "text": "Does the pain worsen when you touch or press around your ear?",
+            "text": "Does the pain irritate when you press it around your ear?",
             "items": [
                 {
                     "id": "symptom_dgf",
-                    "name": "Pain increases when touching ear area",
+                    "name": "Pain increases when pressing around ear",
                     "choices": [
                         {
                             "id": "present",
@@ -70,10 +69,15 @@ title: Response
                 "id": "condition_hg",
                 "name": "Common cold",
                 "common_name": "Common cold",
-                "probability": 0.0708
+                "prob": 0.0708
             }
         ],
-        "extras": {}
+        "queue": [
+          {
+              "queue_id": "762347836hjsdg873643",
+              "transition_id": "20220105115001"
+          }
+        ]
     }
 }
 ```

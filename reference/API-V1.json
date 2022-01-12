@@ -190,6 +190,41 @@
                       }
                     }
                   }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "success": true,
+                      "content": {
+                        "question": {
+                          "type": "string",
+                          "text": "string",
+                          "items": [
+                            {
+                              "id": "string",
+                              "name": "string",
+                              "choices": [
+                                {
+                                  "id": "string",
+                                  "label": "string"
+                                }
+                              ]
+                            }
+                          ],
+                          "extras": {}
+                        },
+                        "conditions": [
+                          {
+                            "id": "string",
+                            "name": "string",
+                            "common_name": "string",
+                            "probability": 0
+                          }
+                        ],
+                        "extras": {}
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -199,64 +234,6 @@
           },
           "409": {
             "description": "Email Already Taken"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "",
-                "type": "object",
-                "properties": {
-                  "age": {
-                    "type": "number"
-                  },
-                  "evidence": {
-                    "type": "array",
-                    "uniqueItems": true,
-                    "minItems": 1,
-                    "items": {
-                      "required": [
-                        "choice_id",
-                        "id"
-                      ],
-                      "properties": {
-                        "choice_id": {
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "id": {
-                          "type": "string",
-                          "minLength": 1
-                        }
-                      }
-                    }
-                  },
-                  "sex": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "required": [
-                  "age",
-                  "evidence",
-                  "sex"
-                ],
-                "x-examples": {
-                  "example-1": {
-                    "age": 25,
-                    "evidence": [
-                      {
-                        "choice_id": "present",
-                        "id": "symptom_dg"
-                      }
-                    ],
-                    "sex": "female"
-                  }
-                }
-              },
-              "examples": {}
-            }
           }
         },
         "description": "Diagnostic engine endpoint will help you starat well-structured medical screening questionnaires.",
